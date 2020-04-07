@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -15,24 +16,27 @@ namespace TestSet
         }
         static void Main(string[] args)
         {
-            HashSet<int> a = new HashSet<int>(new int[] { 2, 5, 1, 6 });
-            HashSet<int> b = new HashSet<int>(new int[] { 8, 7, 6, 2 });
-            printCollection(a);
-            printCollection(b);
+            HashSet<string> fio = new HashSet<string>();
+            SortedSet<string> subjects = new SortedSet<string>();
 
-            a.UnionWith(b);
-            printCollection(a);
-            //Объединение множеств a => 2 5 1 6 8 7 
+            StreamReader sr = new StreamReader("ege.txt");
+            while (!sr.EndOfStream)
+            {
+                string[] temp = sr.ReadLine().Split();
+                fio.Add(temp[0] + " " + temp[1] + " " + temp[2]);
+                subjects.Add(temp[3]);
+            }
+            sr.Close();
 
-            a = new HashSet<int>(new int[] { 2, 5, 1, 6 });
-            a.SymmetricExceptWith(b);
-            printCollection(a);
-            //Симметрическая разность a => 5 1 8 7
+            foreach(var el in fio)
+                Console.WriteLine(el);
+            Console.WriteLine();
 
-            a = new HashSet<int>(new int[] { 2, 5, 1, 6 });
-            a.ExceptWith(b);
-            printCollection(a);
-            //Разность
+            foreach(var el in subjects)
+                Console.WriteLine(el);
+
+
+
         }
     }
 }
