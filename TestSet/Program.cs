@@ -16,24 +16,27 @@ namespace TestSet
         }
         static void Main(string[] args)
         {
-            HashSet<string> fio = new HashSet<string>();
-            SortedSet<string> subjects = new SortedSet<string>();
+             HashSet<string> fio = new HashSet<string>();
+             Stack<string> mess = new Stack<string>();
 
-            StreamReader sr = new StreamReader("ege.txt");
-            while (!sr.EndOfStream)
-            {
-                string[] temp = sr.ReadLine().Split();
-                fio.Add(temp[0] + " " + temp[1] + " " + temp[2]);
-                subjects.Add(temp[3]);
-            }
-            sr.Close();
+             StreamReader sr = new StreamReader("messenges_vk.txt");
+             while (!sr.EndOfStream)
+             {
+                 string temp = sr.ReadLine();
+                 mess.Push(temp);
+             }
+             sr.Close();
 
-            foreach(var el in fio)
-                Console.WriteLine(el);
-            Console.WriteLine();
-
-            foreach(var el in subjects)
-                Console.WriteLine(el);
+             while (mess.Count > 0)
+             {
+                 string[] temp = mess.Pop().Split();
+                 string f = temp[0] + temp[1];
+                if (!fio.Contains(f))
+                {
+                    Console.WriteLine(string.Join(" ", temp));
+                    fio.Add(f);
+                }
+             }
 
         }
     }
