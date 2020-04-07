@@ -35,13 +35,6 @@ namespace TestSet
             foreach(var el in subjects)
                 Console.WriteLine(el);
 
-
-
-            a = new HashSet<int>(new int[] { 2, 5, 1, 6 });
-            a.ExceptWith(b);
-            Console.WriteLine("Разность");
-            printCollection(a);
-            //a => 5 1
         }
     }
 }
